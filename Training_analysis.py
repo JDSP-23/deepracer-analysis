@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.15.2
+#       jupytext_version: 1.16.1
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -46,9 +46,9 @@
 # +
 # Make sure you have the required pre-reqs
 
-# import sys
+#import sys
 
-# # !{sys.executable} -m pip install --upgrade -r requirements.txt
+# #!{sys.executable} -m pip install --upgrade -r requirements.txt
 # -
 
 # ## Imports
@@ -98,22 +98,21 @@ warnings.filterwarnings('ignore')
 # For other ways to read in data look at the [configuration examples](https://github.com/aws-deepracer-community/deepracer-utils/blob/master/docs/examples.md).
 
 # + tags=["parameters"]
-PREFIX='model-name'   # Name of the model, without trailing '/'
-BUCKET='bucket'       # Bucket name is default 'bucket' when training locally
-PROFILE=None          # The credentials profile in .aws - 'minio' for local training
-S3_ENDPOINT_URL=None  # Endpoint URL: None for AWS S3, 'http://minio:9000' for local training
-# -
-
-fh = S3FileHandler(bucket=BUCKET, prefix=PREFIX, profile=PROFILE, s3_endpoint_url=S3_ENDPOINT_URL)
-log = DeepRacerLog(filehandler=fh)
-log.load_training_trace()
+#PREFIX='model-name'   # Name of the model, without trailing '/'
+#BUCKET='bucket'       # Bucket name is default 'bucket' when training locally
+#PROFILE=None          # The credentials profile in .aws - 'minio' for local training
+#S3_ENDPOINT_URL=None  # Endpoint URL: None for AWS S3, 'http://minio:9000' for local training
 
 # +
-# # Example / Alternative for logs on file-system
-# fh = FSFileHandler(model_folder='logs/sample-console-logs', robomaker_log_path='logs/sample-console-logs/logs/training/training-20220611230353-EHNgTNY2T9-77qXhqjBi6A-robomaker.log')
-# log = DeepRacerLog(filehandler=fh)
-# log.load_robomaker_logs()
+#fh = S3FileHandler(bucket=BUCKET, prefix=PREFIX, profile=PROFILE, s3_endpoint_url=S3_ENDPOINT_URL)
+#log = DeepRacerLog(filehandler=fh)
+#log.load_training_trace()
 # -
+
+# # Example / Alternative for logs on file-system
+fh = FSFileHandler(model_folder='logs/test-10', robomaker_log_path='logs/test-10/logs/training/training-20240501160315-MmIy-y3qT16Z5rtrcj-w1w-robomaker.log')
+log = DeepRacerLog(filehandler=fh)
+log.load_robomaker_logs()
 
 try:
     pprint(log.agent_and_network())
@@ -156,7 +155,7 @@ for track in tu.get_tracks():
 try:
     track_name = log.agent_and_network()["world"]
 except Exception as e:
-    track_name = "reinvent_base"
+    track_name = "reInvent2019_wide_ccw"
 
 
 track: Track = tu.load_track(track_name)
@@ -383,12 +382,13 @@ pu.plot_track(df, track)
 # +
 #If you'd like some other colour criterion, you can add
 #a value_field parameter and specify a different column
-iteration_id = 3
+iteration_id = 10
 
 pu.plot_track(df[df['iteration'] == iteration_id], track)
-# -
 
+# + [markdown] jp-MarkdownHeadingCollapsed=true
 # ### Path taken in a particular episode
+# -
 
 episode_id = 12
 
@@ -425,4 +425,4 @@ track_breakdown.keys()
 #
 # **Note: does not work for continuous action space (yet).** 
 
-abu.action_breakdown(df, track, track_breakdown=track_breakdown.get('reinvent2018'), episode_ids=[12])
+abu.action_breakdown(df, track, track_breakdown=track_breakdown.get('reInvent2019_wide_ccw'), episode_ids=[12])

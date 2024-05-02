@@ -110,7 +110,7 @@ warnings.filterwarnings('ignore')
 # -
 
 # # Example / Alternative for logs on file-system
-fh = FSFileHandler(model_folder='logs/test-10', robomaker_log_path='logs/test-10/logs/training/training-20240501160315-MmIy-y3qT16Z5rtrcj-w1w-robomaker.log')
+fh = FSFileHandler(model_folder='logs/test-custom-1', robomaker_log_path='logs/test-custom-1/logs/training/training-20240502130054-r0VQe9hvRcWaPGVDOMBUvA-robomaker.log')
 log = DeepRacerLog(filehandler=fh)
 log.load_robomaker_logs()
 

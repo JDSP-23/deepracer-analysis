@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.16.1
+#       jupytext_version: 1.16.2
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -110,7 +110,7 @@ warnings.filterwarnings('ignore')
 # -
 
 # # Example / Alternative for logs on file-system
-fh = FSFileHandler(model_folder='logs/test-custom-1', robomaker_log_path='logs/test-custom-1/logs/training/training-20240502130054-r0VQe9hvRcWaPGVDOMBUvA-robomaker.log')
+fh = FSFileHandler(model_folder='logs/test-custom-2-clone-v2', robomaker_log_path='logs/test-custom-2-clone-v2/logs/training/training-20240506105130-YvdtFxiLRSO4iTCNKAFy7Q-robomaker.log')
 log = DeepRacerLog(filehandler=fh)
 log.load_robomaker_logs()
 
@@ -341,7 +341,7 @@ else:
 # episodes_to_plot = complete_ones.nlargest(3,'reward')
 
 # highest progress from all episodes:
-episodes_to_plot = simulation_agg.nlargest(3,'progress')
+episodes_to_plot = simulation_agg.nlargest(5,'progress')
 
 try:
     if df.nunique(axis=0)['worker'] > 1:

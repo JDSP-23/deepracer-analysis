@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.15.2
+#       jupytext_version: 1.16.2
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -120,21 +120,22 @@ warnings.filterwarnings('ignore')
 #
 # For other ways to read in data look at the [configuration examples](https://github.com/aws-deepracer-community/deepracer-utils/blob/master/docs/examples.md)
 
-PREFIX='Demo-Reinvent'      # Name of the model, without trailing '/'
-BUCKET='deepracer-local'    # Bucket name is default 'bucket' when training locally
-PROFILE=None                # The credentials profile in .aws - 'minio' for local training
-S3_ENDPOINT_URL=None        # Endpoint URL: None for AWS S3, 'http://minio:9000' for local training
-
-fh = S3FileHandler(bucket=BUCKET, prefix=PREFIX, profile=PROFILE, s3_endpoint_url=S3_ENDPOINT_URL)
-log = DeepRacerLog(filehandler=fh)
-log.load_evaluation_trace()
+# +
+#PREFIX='Demo-Reinvent'      # Name of the model, without trailing '/'
+#BUCKET='deepracer-local'    # Bucket name is default 'bucket' when training locally
+#PROFILE=None                # The credentials profile in .aws - 'minio' for local training
+#S3_ENDPOINT_URL=None        # Endpoint URL: None for AWS S3, 'http://minio:9000' for local training
 
 # +
-# # Example / Alternative for logs on file-system
-# fh = FSFileHandler(model_folder='logs/sample-console-logs')
-# log = DeepRacerLog(filehandler=fh)
-# log.load_robomaker_logs(type=LogType.EVALUATION)
+#fh = S3FileHandler(bucket=BUCKET, prefix=PREFIX, profile=PROFILE, s3_endpoint_url=S3_ENDPOINT_URL)
+#log = DeepRacerLog(filehandler=fh)
+#log.load_evaluation_trace()
 # -
+
+# # Example / Alternative for logs on file-system
+fh = FSFileHandler(model_folder='logs/test-custom-2-clone-v2-eva')
+log = DeepRacerLog(filehandler=fh)
+log.load_robomaker_logs(type=LogType.EVALUATION)
 
 df = log.dataframe()
 
@@ -165,7 +166,7 @@ for track in tu.get_tracks():
 try:
     track_name = log.agent_and_network()["world"]
 except Exception as e:
-    track_name = "reinvent_base"
+    track_name = "reInvent2019_wide_ccw"
 
 
 track: Track = tu.load_track(track_name)

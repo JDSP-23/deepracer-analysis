@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.16.0
+#       jupytext_version: 1.16.1
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -44,9 +44,9 @@
 # +
 # Make sure you have the required pre-reqs
 
-# import sys
+import sys
 
-# # !{sys.executable} -m pip install --upgrade -r requirements.txt
+# !{sys.executable} -m pip install --upgrade -r requirements.txt
 # -
 
 #
